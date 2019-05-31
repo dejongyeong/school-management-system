@@ -1,0 +1,24 @@
+
+-- DROP TABLE
+DROP TABLE dbo.Teachers;
+DROP TABLE dbo.Admins;
+
+-- CREATE TABLE
+CREATE TABLE Admins (
+	username VARCHAR(15) NOT NULL UNIQUE,
+	password VARCHAR(15) NOT NULL,
+	CONSTRAINT Admin_PK PRIMARY KEY(username));
+
+CREATE TABLE Teachers (
+	teacherID INTEGER,
+	surname VARCHAR(25) NOT NULL,
+	forename VARCHAR(25) NOT NULL,
+	dob DATE NOT NULL,
+	phone VARCHAR(14) NOT NULL,
+	type VARCHAR(1) NOT NULL CONSTRAINT teacher_type_ck CHECK (type IN ('P', 'F')),
+	salary NUMERIC(7,2) DEFAULT 0.00,
+    subjects VARCHAR2(40) NOT NULL,
+	CONSTRAINT Teacher_PK PRIMARY KEY (teacherID));
+
+COMMIT;
+

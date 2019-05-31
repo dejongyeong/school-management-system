@@ -1,0 +1,117 @@
+﻿<UserControl
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:SchoolManagementSystem.Views"
+    xmlns:pwh="clr-namespace:SchoolManagementSystem.Helpers"
+    xmlns:Models="clr-namespace:SchoolManagementSystem.Models"
+    xmlns:vm="clr-namespace:SchoolManagementSystem.ViewModels"
+    x:Class="SchoolManagementSystem.Views.RegisterAdminView"
+    mc:Ignorable="d" 
+    d:DesignHeight="450" d:DesignWidth="600" >
+
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+
+        <Grid Margin="5,10,5,5" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="90" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Fields and Button -->
+            <Image 
+                x:Name="imgAuthentication" 
+                HorizontalAlignment="Left" 
+                Height="72" Grid.RowSpan="3" 
+                VerticalAlignment="Top" 
+                Width="61" 
+                Source="AuthenticationImage.png" 
+                Margin="14,19,0,0" />
+
+            <Label 
+                x:Name="lblUsername" 
+                Content="Username:" 
+                Grid.Column="1" 
+                HorizontalAlignment="Left" 
+                Margin="6,6,0,4"
+                VerticalAlignment="Top" />
+
+            <Label 
+                x:Name="lblPassword" 
+                Content="Password:" 
+                Grid.Column="1" 
+                HorizontalAlignment="Left" 
+                Margin="6,5,0,4" 
+                VerticalAlignment="Top" 
+                Grid.Row="1" />
+
+            <TextBox
+                x:Name="txtUsername" TabIndex="1"
+                Grid.Column="1" 
+                HorizontalAlignment="Left"
+                Height="23"
+                Margin="77,8,0,0"
+                VerticalAlignment="Top" 
+                Width="155" 
+                MaxLines="1" Text="{Binding Iadmin.Username, Mode=TwoWay, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                Validation.ErrorTemplate="{StaticResource inputDataError}"/>
+
+
+            <PasswordBox 
+                x:Name="pwdPassword" TabIndex="2"
+                Grid.Column="1" 
+                HorizontalAlignment="Left" 
+                Margin="77,7,0,0" 
+                Grid.Row="1"
+                VerticalAlignment="Top" 
+                Width="155"
+                PasswordChar="*"
+                MaxLength="15" 
+                Height="23"
+                pwh:PasswordBoxHelper.BindPassword="True"
+                pwh:PasswordBoxHelper.BoundPassword="{Binding Iadmin.Password, Mode=TwoWay, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                Validation.ErrorTemplate="{StaticResource inputDataError}" />
+
+            <Button 
+                x:Name="btnRegister" TabIndex="3"
+                Content="Register" 
+                Grid.Column="1" 
+                HorizontalAlignment="Left" 
+                Margin="10,9,0,4" Grid.Row="2" 
+                VerticalAlignment="Top" 
+                Width="222" 
+                Height="23" Command="{Binding RegisterCommand}"/>
+
+            <TextBlock 
+                x:Name="txtBlockLoginMessage"
+                Grid.Column="1" 
+                Grid.Row="3"
+                HorizontalAlignment="Center" 
+                Margin="10,9,0,0" 
+                VerticalAlignment="Top" 
+                FontSize="11" 
+                FontStyle="Italic">
+                <Run Text="Already an Admin? " />
+                <!-- TextBlock as HyperLink -->
+                <Hyperlink 
+                    x:Name="txtBlockRegisterLink" 
+                    FontSize="11" 
+                    FontStyle="Italic" 
+                    Foreground="Blue"
+                    TextDecorations="Underline" Command="{Binding GoToLogin}" >
+                    <Run Text="Login" />
+                </Hyperlink>
+            </TextBlock>
+
+        </Grid>
+
+    </StackPanel>
+
+</UserControl>

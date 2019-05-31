@@ -1,0 +1,19 @@
+﻿<Window x:Class="SchoolManagementSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SchoolManagementSystem"
+        xmlns:vm="clr-namespace:SchoolManagementSystem.ViewModels"
+        mc:Ignorable="d" Icon="SMSIcon.ico"
+        Title="School Management System" Height="500" Width="700" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
+
+    <DockPanel>
+        <ContentControl Content="{Binding BaseModel}" />
+    </DockPanel>
+
+</Window>
